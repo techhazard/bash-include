@@ -112,8 +112,8 @@ It seems counter-intuitive to use a + to disable an option, but this is consiste
 That's it folks!
 
 ## Short roadmap:  
-* locally checking next to file included in (instead of PWD)
 * actually using ~/bin/include/ (before looking in ~/bin/)
 * more than one file per include statement
 * option for `both` so that it not stops if found locally
+* DONE! locally checking next to file included in (instead of PWD)
 

@@ -4,9 +4,20 @@
 include_local() {
 
 
-if [[ -f "$PWD/$1" ]];
+# verify dir of scrip
+startdir=$(dirname $0)
+FIND_CONF_DIR="$0"
+while [ -h "$FIND_CONF_DIR" ]; do # resolve $FIND_CONF_DIR until the file is no longer a symlink
+  confdir="$( cd -P "$( dirname "$FIND_CONF_DIR" )" && pwd )"
+  FIND_CONF_DIR="$(readlink "$FIND_CONF_DIR")"
+  [[ $FIND_CONF_DIR != /* ]] && FIND_CONF_DIR="$DIR/$FIND_CONF_DIR" # if $FIND_CONF_DIR was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+currdir="$( cd -P "$( dirname "$FIND_CONF_DIR" )" && pwd )"
+echo c $currdir
+
+if [[ -f "$currdir/$1" ]];
 then
-	source "$PWD/$1"
+	source "$currdir/$1"
 	return 0
 fi
 #echo "script not found locally"
