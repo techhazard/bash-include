@@ -87,7 +87,7 @@ Do you remember the order in which `include` looks for the file? (see \# 2.)
 It already found it right next to `~/my_testscript`, so it uses that and stops.
 
 ### 4. Overriding local include
-If you do want to have include use the one in `~/bin/include` (or if not found there, the one in `~/bin`), you'll have to use the `nonlocal` option like so:  
+If you do want to have include use the one in `~/bin/include` (or if not found there, the one in `~/bin`), you'll have to use the `+local` option like so:  
 `~/my_testscript`
 ```
 #!/bin/bash
@@ -96,7 +96,7 @@ If you do want to have include use the one in `~/bin/include` (or if not found t
 source $HOME/bin/include.bash
 
 # include the colour variables
-include colours.sh nonlocal     # <--
+include colours.sh +local     # <--
 
 # print the values of these variables
 echo "$apple"
@@ -105,6 +105,9 @@ echo "$pepper"
 If we now run `~/my_testscript` it will output just like in the second part:  
 `sour green`  
 `spicy red`  
+
+
+It seems counter-intuitive to use a + to disable an option, but this is consistent with bash's options like `set -e #exit on error` and `set +e #not exit on error`
 
 That's it folks!
 

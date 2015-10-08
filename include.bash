@@ -31,11 +31,11 @@ declare -A options
 # Split options
 for opt in ${@:2};
 do	case $opt in
-		non*)
-			options[${opt#"non"}]=0
+		+*)
+			options[${opt#"+"}]=0
 			;;
-		*)	
-			options[$opt]=1
+		-*)	
+			options[${opt#"-"}]=1
 			;;
 	esac;
 done
