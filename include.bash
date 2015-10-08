@@ -26,6 +26,13 @@ return 1
 
 
 include_global() {
+# ~/bin/include
+if [[ -f "$HOME/bin/include/$1" ]];
+then
+	source "$HOME/bin/include/$1"
+	return 0
+fi
+# ~/bin
 if [[ -f "$HOME/bin/$1" ]];
 then
 	source "$HOME/bin/$1"
