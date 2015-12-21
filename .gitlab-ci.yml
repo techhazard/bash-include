@@ -1,0 +1,33 @@
+stages:
+- build
+- cleanup_build
+- test
+- deploy
+- cleanup
+
+build_job:
+  stage: build
+  script:
+  - make
+
+cleanup_build_job:
+  stage: cleanup_build
+  script:
+  - make distclean
+  when: on_failure
+
+test_job:
+  stage: test
+  script:
+  - make test
+#
+#deploy_job:
+#  stage: deploy
+#  script:
+#  - make deploy
+#
+cleanup_job:
+  stage: cleanup
+  script:
+  - make clean
+  when: always
